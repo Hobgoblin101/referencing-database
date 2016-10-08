@@ -1,0 +1,23 @@
+{
+  "name": "referencing-database",
+  "version": "1.0.2",
+  "description": "nodejs database manager",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "make test"
+  },
+  "keywords": [
+    "database",
+    "management",
+    "storage",
+    "reference-based",
+    "template-based"
+  ],
+  "author": "Ajani James Bilby",
+  "license": "ISC",
+  "repository": "https://github.com/Hobgoblin101/referencing-database",
+  "dependencies": {
+    "object-manipulation": "^1.0.0"
+  }
+}
