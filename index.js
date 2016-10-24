@@ -39,7 +39,7 @@ module.exports = {
       -----------------------------*/
       //Load data
       var data = {reference: true};
-      if (!completeData){
+      if (completeData){
         data.reference = false;
       }
 
