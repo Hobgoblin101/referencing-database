@@ -66,6 +66,7 @@ module.exports = {
     if (module.exports.exist(type, id)){
 
       var tableData = JSON.parse(fs.readFileSync("./database/storage/"+type+"/"+id+".json", 'utf8'));
+
       //If database is setup not reference then just pass JSON
       if (completeData){
         return tableData;
@@ -78,11 +79,10 @@ module.exports = {
 
       //compile table data and reference then pass
       var template = module.exports.templateGet(type);
-      if (template.data === null){
-        template.data = {};
+      if (template === null){
+        template = {};
       }
-      var data = object.merg(template.data, tableData);
-      return data;
+      return object.merg(template, tableData);
 
     }else{
       //If the table doesn't exist pass null
@@ -90,6 +90,8 @@ module.exports = {
     }
   },
   save: function(type, id, data){
+    data = object.passNew(module.exports.templateGet(type), data);
+
     if (cleanLayout){
       return fs.writeFileSync("./database/storage/"+type+"/"+id+".json", JSON.stringify(data, null, 2));
     }else{
@@ -101,22 +103,39 @@ module.exports = {
       return false;
     }else{
       var cData = module.exports.get(type, id);
-      module.exports.save(type, id, object.merg(cData, newData));
+      var output = object.merg(cData, newData);
+      module.exports.save(type, id, output);
       return true;
     }
   },
   templateGet: function(type){
     if (typeof(type) == 'function' || typeof(type) == 'undefined' || typeof(type) == 'object'){
       console.log("**Error**: Invalid type (type: "+type+", id:"+id+")");
-      return {successful: false, err: "invalid type", data: null};
+      return null;
     }else{
       var index = fs.readdirSync("./database/templates/");
       if (index.indexOf(type+'.json') != -1){
-        return {successful: true, err: null, data: JSON.parse(fs.readFileSync("./database/templates/"+type+".json", 'utf8'))};
+        return JSON.parse(fs.readFileSync("./database/templates/"+type+".json", 'utf8'));
       }else{
-        return {successful: false, err: "invalid type", data: null};
+        return null;
       }
     }
+  },
+  list: function(type){
+    if (fs.readdirSync("./database/storage").indexOf(type) == -1){
+      return null;
+    }
+    var list = fs.readdirSync("./database/storage/"+type);
+    var results = [];
+    for (let file of list){
+      file = file.split('.');
+      if (file[file.length-1].toLowerCase() == 'json'){
+        file.splice(file.length-1, 1);
+        results.push(file.join('.'));
+      }
+    }
+
+    return results;
   }
 };
 

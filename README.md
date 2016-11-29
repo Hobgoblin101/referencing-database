@@ -8,27 +8,30 @@ that will be a folder called 'templates', of which is where you will be required
 to put your templates to be able to make new database items from.  
 
 Though out the module templates are equivalent to types.
-Example: database.new('profile', 'newUserId'); will be referencing 'database/templates/profile.json'
+Example: db.new('profile', 'newUserId'); will be referencing 'database/templates/profile.json'
 
 
 
-##database.new(type, id, overwrite)
+##db.new(type, id, overwrite)
 Will create a new database item referencing the template of type.  
 Overwrite will force the new data item to overwrite another item with the same type and id.
 
-##database.exist(type, id)
+##db.exist(type, id)
 Will return a boolean on wether or not that item exists
 
-##database.get(type, id)
+##db.get(type, id)
 Will return all data in that specific data item
 
-##database.save(type, id, data)
+##db.save(type, id, data)
 Will delete the items content and replace it with the input data
 
-##database.set(type, id, data)
+##db.set(type, id, data)
 Will merg the data items current data with the new data (so new data will overwrite old data).
 
-##database.getTemplate(type)
+##db.list(type)
+Will return an array with all of the items of type.
+
+##db.getTemplate(type)
 Will return the default data from the type inputted.
 
 
