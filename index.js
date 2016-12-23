@@ -1,3 +1,5 @@
+console.log('-----------------------------------------------------------------\n                            NOTE\n-----------------------------------------------------------------\nReferencing database is going to be removed and replaced by adatre\nRecommend Changing to implement that package to replace this one asap\n\nadatre has allot more features and is allot faster and more stable\n\n');
+
 var cleanLayout = true;
 var fs = require("fs");
 var object = require("object-manipulation");

@@ -1,6 +1,6 @@
 {
   "name": "referencing-database",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "nodejs database manager",
   "main": "index.js",
   "scripts": {
@@ -18,6 +18,6 @@
   "license": "ISC",
   "repository": "https://github.com/Hobgoblin101/referencing-database",
   "dependencies": {
-    "object-manipulation": "^1.0.0"
+    "object-manipulation": "^1.0.6"
   }
 }
